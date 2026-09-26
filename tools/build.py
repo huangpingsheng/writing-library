@@ -152,8 +152,9 @@ def main():
         sys.exit("找不到 content/ 目录")
 
     # ---------- 扫描 ----------
-    buckets = {}      # cat_key -> {sub_id -> {name, order, files[]}}
-    stats = {"total": 0, "uncat": 0, "no_fm": 0}
+    buckets = {}      # cat_key -> {sub_id -> {name, order, folder, files[]}}
+    cat_folders = {}  # cat_key -> content/ 下的一级文件夹名
+    stats = {"total": 0, "uncat": 0, "no_fm": 0, "dyn": 0}
 
     for root, dirs, files in os.walk(CONTENT):
         dirs[:] = sorted(d for d in dirs if not d.startswith("."))
@@ -174,15 +175,24 @@ def main():
             cat_raw = fm.get("category", "")
             ckey = norm(cat_raw) if cat_raw else fallback["key"]
             if ckey not in cat_meta:
-                ckey = fallback["key"]
-                stats["uncat"] += 1
+                if str(cat_raw).strip():
+                    # 正文里写了 categories.json 里没有的类目 → 自动建一个，显示名沿用原文
+                    cat_meta[ckey] = {"key": ckey, "display": str(cat_raw).strip(),
+                                      "icon": "", "desc": "", "order": 90}
+                    stats["dyn"] += 1
+                else:
+                    ckey = fallback["key"]
+                    stats["uncat"] += 1
 
             sub_raw = fm.get("subcategory", "") or ""
 
             # 子类 id / 排序取自所在文件夹（如 01.1_主线正文）
             reldir = os.path.relpath(root, CONTENT).replace("\\", "/")
             parts = [p for p in reldir.split("/") if p and p != "."]
+            cat_folder = parts[0] if len(parts) > 0 else ""
             folder = parts[1] if len(parts) > 1 else ""
+            if cat_folder and ckey not in cat_folders:
+                cat_folders[ckey] = cat_folder
             sm = re.match(r"^([\d.]+)_(.+)$", folder)
             if sm:
                 sub_id, sub_order = sm.group(1), sm.group(1)
@@ -231,7 +241,8 @@ def main():
 
             cat = buckets.setdefault(ckey, {})
             sub = cat.setdefault(sub_id, {"id": sub_id, "name": sub_name,
-                                          "order": sub_order, "files": []})
+                                          "order": sub_order, "folder": folder,
+                                          "files": []})
             sub["files"].append(f)
             stats["total"] += 1
 
@@ -252,6 +263,7 @@ def main():
             subs.append({
                 "id": sid,
                 "name": sub["name"],
+                "folder": sub.get("folder", ""),
                 "files": sub["files"],
             })
         allf = [f for s in subs for f in s["files"]]
@@ -259,6 +271,7 @@ def main():
             "id": "%02d" % (ci + 1),
             "key": ckey,
             "name": meta["display"],
+            "folder": cat_folders.get(ckey, ""),
             "icon": meta.get("icon", ""),
             "desc": meta.get("desc", ""),
             "count": len(allf),
@@ -294,6 +307,8 @@ def main():
     print("  子类     : %d" % sum(len(c["subs"]) for c in cats_out))
     if stats["uncat"]:
         print("  未分类   : %d 篇（放在「未分类」里）" % stats["uncat"])
+    if stats["dyn"]:
+        print("  新类目   : %d 篇（正文里的新类目已自动建好）" % stats["dyn"])
     if stats["no_fm"]:
         print("  无元信息 : %d 篇（已按文件名/正文自动补全）" % stats["no_fm"])
     print("  产物     : dist/data.js + dist/index.html")
