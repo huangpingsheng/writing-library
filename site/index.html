@@ -256,6 +256,74 @@ aside.hide{margin-left:-296px}
   .brand small{display:none}
   .theme-pop{right:10px}
 }
+
+/* ============ 写作台 ============ */
+.wrap.wide{max-width:1180px}
+.ed-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.ed-bar h2{font-size:20px;font-weight:600;margin-right:auto;display:flex;align-items:baseline;gap:9px}
+.ed-bar h2 small{font-size:11.5px;color:var(--ink3);font-weight:400}
+.ed-grid{display:grid;grid-template-columns:238px 1fr;gap:16px;align-items:start}
+.ed-side{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden}
+.ed-side .h{font-size:11px;color:var(--ink3);letter-spacing:1.2px;padding:11px 13px;border-bottom:1px solid var(--line2);display:flex;align-items:center}
+.ed-side .h b{margin-left:auto;font-weight:400}
+.ed-list{max-height:60vh;overflow-y:auto}
+.ed-d{display:block;width:100%;text-align:left;border:0;background:none;cursor:pointer;padding:9px 13px;border-bottom:1px solid var(--line2);font-family:inherit;font-size:13px;color:var(--ink2);transition:.14s}
+.ed-d:hover{background:var(--panel2);color:var(--ink)}
+.ed-d.on{background:var(--accent-soft);color:var(--accent)}
+.ed-d b{display:block;font-weight:500;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ed-d span{font-size:10.5px;color:var(--ink3);font-variant-numeric:tabular-nums}
+.ed-d .st{font-size:10px;padding:1px 6px;border-radius:20px;background:var(--panel2);border:1px solid var(--line2);margin-left:6px}
+.ed-d .st.ok{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.ed-empty{font-size:12.5px;color:var(--ink3);padding:16px 13px;line-height:1.8}
+.ed-form{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:18px 20px 20px}
+.ed-form.drop-on{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.ed-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ed-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.ed-f{margin-bottom:12px}
+.ed-f label{display:block;font-size:11.5px;color:var(--ink3);letter-spacing:.6px;margin-bottom:5px}
+.ed-f input,.ed-f select,.ed-f textarea{
+  width:100%;border:1px solid var(--line);border-radius:9px;background:var(--panel2);
+  color:var(--ink);font-family:inherit;font-size:14px;padding:9px 12px;outline:none;transition:.16s;
+}
+.ed-f input:focus,.ed-f select:focus,.ed-f textarea:focus{border-color:var(--accent);background:var(--panel);box-shadow:0 0 0 3px var(--accent-soft)}
+.ed-f textarea{resize:vertical;line-height:1.8}
+.ed-f .ti{font-size:16px;font-weight:600}
+#edBody{min-height:360px;font-size:15px;line-height:1.95}
+.ed-hint{font-size:11px;color:var(--ink3);margin-top:4px}
+.ed-foot{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:15px;padding-top:14px;border-top:1px solid var(--line2)}
+.ed-foot .sp{flex:1}
+.ed-stat{font-size:12px;color:var(--ink3);font-variant-numeric:tabular-nums}
+.btn{
+  height:34px;padding:0 15px;border:1px solid var(--line);background:var(--panel);color:var(--ink2);
+  border-radius:9px;cursor:pointer;font-size:13px;font-family:inherit;display:inline-flex;align-items:center;gap:6px;transition:.16s;
+}
+.btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.pri:hover{filter:brightness(1.06);color:#fff}
+.btn.danger:hover{border-color:#B3261E;color:#B3261E;background:#FBE9E7}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.ed-msg{font-size:12.5px;padding:9px 12px;border-radius:9px;margin-bottom:13px;display:none;line-height:1.7}
+.ed-msg.show{display:block}
+.ed-msg.ok{background:var(--accent-soft);color:var(--accent)}
+.ed-msg.err{background:#FBE9E7;color:#B3261E}
+.ed-msg.info{background:var(--panel2);color:var(--ink2)}
+.ed-msg a{color:inherit;text-decoration:underline}
+.modal{position:fixed;inset:0;background:rgba(20,18,16,.5);z-index:90;display:none;align-items:center;justify-content:center;padding:22px}
+.modal.show{display:flex}
+.modal .box{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);width:100%;max-width:680px;max-height:88vh;overflow:auto;padding:20px 22px}
+.modal .box h3{font-size:17px;font-weight:600;margin-bottom:6px}
+.modal .box .sub{font-size:12.5px;color:var(--ink3);margin-bottom:15px;line-height:1.75}
+.modal .box .sub b{color:var(--ink2);font-weight:600}
+.modal textarea{width:100%;min-height:210px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);color:var(--ink);font-family:inherit;font-size:14px;line-height:1.8;padding:11px 13px;outline:none;resize:vertical}
+.modal textarea:focus{border-color:var(--accent);background:var(--panel)}
+.pk{display:flex;align-items:baseline;gap:9px;padding:8px 0;border-bottom:1px solid var(--line2);font-size:13.5px}
+.pk i{font-style:normal;color:var(--ink3);font-size:11px;margin-left:auto;flex:0 0 auto}
+.pk b{font-weight:600}
+@media(max-width:820px){
+  .ed-grid{grid-template-columns:1fr}
+  .ed-row,.ed-row3{grid-template-columns:1fr}
+  .ed-list{max-height:220px}
+}
 </style>
 </head>
 <body>
@@ -264,6 +332,7 @@ aside.hide{margin-left:-296px}
   <div class="brand" id="home"><span class="dot"></span><span id="brandName">写作库</span> <small id="brandsub"></small></div>
   <input class="search" id="q" placeholder="搜标题、摘要、标签、正文…  ⌘K" autocomplete="off">
   <div class="spacer"></div>
+  <button class="tbtn" id="btnWrite" title="写作台">写作</button>
   <button class="tbtn" id="btnSide" title="目录">目录</button>
   <button class="tbtn" id="btnRand" title="随机一篇">随机</button>
   <button class="tbtn" id="btnFs" title="字号">A-</button>
@@ -278,6 +347,9 @@ aside.hide{margin-left:-296px}
   <aside id="aside"><div class="side-title">分类目录</div><div id="tree"></div><div class="side-foot" id="sideFoot"></div></aside>
   <div class="main" id="main"><div class="wrap" id="view"></div></div>
 </div>
+
+<div class="modal" id="edModal"></div>
+<input type="file" id="edFiles" multiple accept=".md,.markdown,.txt,text/plain,text/markdown" style="display:none">
 
 <script src="data.js"></script>
 <script>
@@ -533,6 +605,8 @@ function expandTo(cid,sid){
 }
 function route(){
   var h=location.hash||'';
+  if(/^#\/write/.test(h)){ view.classList.add('wide'); return openEditor(); }
+  view.classList.remove('wide');
   var m=h.match(/^#\/c\/(.+)$/); if(m)return openCat(m[1]);
   m=h.match(/^#\/s\/(.+)$/); if(m)return openSub(m[1]);
   m=h.match(/^#\/f\/(.+)$/); if(m)return openFile(decodeURIComponent(m[1]));
@@ -561,6 +635,530 @@ document.addEventListener('keydown',function(e){
   if(e.key==='ArrowLeft'&&document.querySelector('.navfoot .l')){document.querySelector('.navfoot .l').click()}
 });
 window.addEventListener('hashchange',route);
+/* ============ 写作台 ============ */
+var GHKEY='lib-gh-token', DKKEY='lib-drafts-v1', DCKEY='lib-drafts-cur';
+var drafts=[], cur=null, saveTimer=null;
+
+function lsStr(k){try{return localStorage.getItem(k)||''}catch(e){return ''}}
+function lsStrSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function lsGet(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+
+function loadDrafts(){ var v=lsGet(DKKEY,[]); drafts=Array.isArray(v)?v:[]; cur=lsStr(DCKEY)||null; }
+function saveDrafts(){ lsSet(DKKEY,drafts); }
+function curDraft(){ for(var i=0;i<drafts.length;i++) if(drafts[i].id===cur) return drafts[i]; return null }
+function newDraft(){
+  return {id:'d'+Date.now().toString(36)+Math.floor(Math.random()*1e4).toString(36),
+    title:'',catKey:'',catName:'',subSel:'',subName:'',
+    type:'',tone:'',tags:'',entities:'',summary:'',quote:'',body:'',
+    updatedAt:Date.now(),publishedPath:''};
+}
+function wc(s){return String(s==null?'':s).replace(/\s/g,'').length}
+function firstLine(s){var t=String(s||'').replace(/\s+/g,' ').replace(/^[\s>#\-*]+/,'').trim();return t.slice(0,70)+(t.length>70?'…':'')}
+function splitList(s){return String(s||'').split(/[,，、\n]/).map(function(x){return x.replace(/^\s+|\s+$/g,'')}).filter(Boolean)}
+function listToStr(a){return Array.isArray(a)?a.join('，'):String(a||'')}
+function normKey(s){return String(s||'').replace(/[\s\u3000·・\-—_]+/g,'')}
+function pad2(n){return (n<10?'0':'')+n}
+function sanitize(s){
+  var t=String(s==null?'':s).replace(/[\\\/:*?"<>|#\r\n\t]/g,'').replace(/^\s+|\s+$/g,'');
+  return t.slice(0,60)||'未命名';
+}
+function catByKey(k){for(var i=0;i<LIB.cats.length;i++) if(LIB.cats[i].key===k) return LIB.cats[i];return null}
+function catByName(n){for(var i=0;i<LIB.cats.length;i++) if(LIB.cats[i].name===n) return LIB.cats[i];return null}
+function nextCatIndex(){
+  var mx=0;
+  LIB.cats.forEach(function(c){var m=String(c.folder||'').match(/^(\d+)/); if(m) mx=Math.max(mx,parseInt(m[1],10))});
+  return mx+1;
+}
+function resolveTargets(d){
+  var cat=catByKey(d.catKey), catNum, catFolder;
+  if(cat && cat.folder){
+    catFolder=cat.folder;
+    var m=catFolder.match(/^(\d+)/); catNum=m?m[1]:pad2(nextCatIndex());
+  }else{
+    catNum=pad2(nextCatIndex());
+    catFolder=catNum+'_'+sanitize(d.catName||'新类目');
+  }
+  var subFolder=null, subId=null;
+  if(cat){
+    (cat.subs||[]).forEach(function(s){ if(s.name===d.subName && s.folder){ subFolder=s.folder; subId=s.id } });
+  }
+  if(!subFolder){
+    var n=(cat&&cat.folder)?((cat.subs||[]).length+1):1;
+    subId=catNum+'.'+n;
+    subFolder=subId+'_'+sanitize(d.subName||'随手记');
+  }
+  return {cat:cat,catNum:catNum,catFolder:catFolder,subFolder:subFolder,subId:subId};
+}
+function yv(s){return '"'+String(s==null?'':s).replace(/[\r\n]+/g,' ').replace(/"/g,"'")+'"'}
+function buildMd(d){
+  var L=['---'];
+  L.push('title: '+yv(d.title||'未命名'));
+  if(d.catName) L.push('category: '+yv(d.catName));
+  if(d.subName) L.push('subcategory: '+yv(d.subName));
+  if(d.type) L.push('type: '+yv(d.type));
+  if(d.tone) L.push('tone: '+yv(d.tone));
+  var tags=splitList(d.tags);
+  if(tags.length){ L.push('tags:'); tags.forEach(function(t){L.push('  - '+t)}) }
+  var sum=d.summary||firstLine(d.body);
+  if(sum) L.push('summary: '+yv(sum));
+  if(d.quote) L.push('quote: '+yv(d.quote));
+  var ents=splitList(d.entities);
+  if(ents.length){ L.push('entities:'); ents.forEach(function(t){L.push('  - '+t)}) }
+  L.push('---');
+  L.push('');
+  L.push(String(d.body||'').replace(/[\s\u3000]+$/,''));
+  L.push('');
+  return L.join('\n');
+}
+
+/* ---- GitHub 接口 ---- */
+function ghToken(){ return lsStr(GHKEY) }
+function encPath(p){ return String(p).split('/').map(encodeURIComponent).join('/') }
+function b64enc(str){
+  var bytes=new TextEncoder().encode(str), bin='', CH=0x8000;
+  for(var i=0;i<bytes.length;i+=CH) bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+CH));
+  return btoa(bin);
+}
+function decodeB64(b){
+  var bin=atob(String(b||'').replace(/\s/g,'')), bytes=new Uint8Array(bin.length);
+  for(var i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+function ghFetch(path,opts){
+  opts=opts||{};
+  var h={'Accept':'application/vnd.github+json','Authorization':'Bearer '+ghToken()};
+  if(opts.body) h['Content-Type']='application/json';
+  return fetch('https://api.github.com/repos/'+REPO+'/'+path,{
+    method:opts.method||'GET', headers:h,
+    body:opts.body?JSON.stringify(opts.body):undefined
+  }).then(function(r){
+    return r.text().then(function(t){
+      var j=null; try{j=JSON.parse(t)}catch(e){}
+      if(!r.ok){ var e=new Error((j&&j.message)||('HTTP '+r.status)); e.status=r.status; e.data=j; throw e }
+      return j;
+    });
+  });
+}
+function ensureCategory(displayName){
+  var key=normKey(displayName);
+  return ghFetch('contents/'+encPath('tools/categories.json')).then(function(r){
+    var cfg=null; try{cfg=JSON.parse(decodeB64(r.content||''))}catch(e){ return null }
+    if(!cfg||!cfg.categories) return null;
+    if(cfg.categories[key]) return null;
+    cfg.categories[key]={key:key,display:displayName,icon:'',desc:'（写作台新建的类目）',order:90};
+    return ghFetch('contents/'+encPath('tools/categories.json'),{method:'PUT',body:{
+      message:'写作台：新建类目「'+displayName+'」',
+      content:b64enc(JSON.stringify(cfg,null,2)+'\n'),
+      branch:BRANCH, sha:r.sha
+    }});
+  });
+}
+
+/* ---- 界面反馈 ---- */
+function edMsg(kind,text){ var el=$('#edMsg'); if(!el)return; el.className='ed-msg show '+kind; el.textContent=text }
+function ghMsg(kind,text){ var el=$('#ghMsg'); if(!el)return; el.className='ed-msg show '+kind; el.textContent=text }
+function setBusy(b){ ['edPub','edPub2'].forEach(function(id){var el=$('#'+id); if(el) el.disabled=!!b}) }
+function markSaved(){
+  var el=$('#edSaved'); if(!el)return;
+  var t=new Date(), p=function(n){return (n<10?'0':'')+n};
+  el.textContent='· 已保存 '+p(t.getHours())+':'+p(t.getMinutes())+':'+p(t.getSeconds());
+}
+function updateCount(){
+  var d=curDraft(), el=$('#edStat'); if(!el||!d)return;
+  el.textContent=wc(d.body)+' 字';
+}
+function touch(){
+  if(saveTimer) clearTimeout(saveTimer);
+  saveTimer=setTimeout(function(){ saveDrafts(); renderList(); updateCount(); markSaved() },420);
+}
+function renderList(){
+  var box=$('#edList'); if(!box)return;
+  var cnt=$('#edCnt'); if(cnt) cnt.textContent=drafts.length+' 篇';
+  if(!drafts.length){ box.innerHTML='<div class="ed-empty">还没有草稿。<br>点「＋ 新建」开始写，<br>或用「导入文件 / 粘贴拆分」。</div>'; return }
+  var h='';
+  drafts.forEach(function(d){
+    h+='<button class="ed-d'+(d.id===cur?' on':'')+'" data-d="'+esc(d.id)+'">'
+      +'<b>'+esc(d.title||'(未命名)')+'</b>'
+      +'<span>'+wc(d.body)+' 字'+(d.publishedPath?'<span class="st ok">已发布</span>':'')+'</span>'
+      +'</button>';
+  });
+  box.innerHTML=h;
+}
+
+/* ---- 写作台主视图 ---- */
+function openEditor(){
+  loadDrafts();
+  if(!cur || !curDraft()){
+    if(drafts.length) cur=drafts[0].id;
+    else { var d=newDraft(); drafts.unshift(d); saveDrafts(); cur=d.id }
+  }
+  lsStrSet(DCKEY,cur);
+  renderEditor();
+}
+function renderEditor(){
+  var d=curDraft(); if(!d) return;
+  var TYPES=[],TONES=[];
+  flat.forEach(function(f){
+    if(f.type && TYPES.indexOf(f.type)<0) TYPES.push(f.type);
+    if(f.tone && TONES.indexOf(f.tone)<0) TONES.push(f.tone);
+  });
+  var catOpts='<option value="">— 选一个类目 —</option>';
+  LIB.cats.forEach(function(c){ catOpts+='<option value="'+esc(c.key)+'">'+esc(c.name)+'</option>' });
+  catOpts+='<option value="__new__">＋ 新建类目…</option>';
+  var cat=catByKey(d.catKey);
+  var subOpts='<option value="">— 选一个子类 —</option>';
+  if(cat) (cat.subs||[]).forEach(function(s){ subOpts+='<option value="'+esc(s.name)+'">'+esc(s.name)+'</option>' });
+  subOpts+='<option value="__new__">＋ 新建子类…</option>';
+  var dl=function(id,arr){ return '<datalist id="'+id+'">'+arr.map(function(t){return '<option value="'+esc(t)+'">'}).join('')+'</datalist>' };
+
+  view.innerHTML=''
+  +'<div class="ed-bar"><h2 class="serif">写作台 <small id="edSaved"></small></h2>'
+  +'<button class="btn" id="edNew">＋ 新建</button>'
+  +'<button class="btn" id="edImport">导入文件</button>'
+  +'<button class="btn" id="edSplit">粘贴拆分</button>'
+  +'<button class="btn" id="edSet">设置 Token</button>'
+  +'<button class="btn pri" id="edPub">发布到网站</button>'
+  +'</div>'
+  +'<div class="ed-grid">'
+  +'<div class="ed-side"><div class="h">草稿箱 <b id="edCnt"></b></div><div class="ed-list" id="edList"></div></div>'
+  +'<div class="ed-form" id="edForm">'
+  +'<div class="ed-msg" id="edMsg"></div>'
+  +'<div class="ed-f"><label>标题</label><input class="ti" id="edTitle" placeholder="这篇叫什么" value="'+esc(d.title)+'"></div>'
+  +'<div class="ed-row">'
+  +'<div class="ed-f"><label>类目</label><select id="edCat">'+catOpts+'</select><div class="ed-hint" id="edCatHint"></div></div>'
+  +'<div class="ed-f"><label>子类</label><select id="edSub">'+subOpts+'</select><div class="ed-hint" id="edSubHint"></div></div>'
+  +'</div>'
+  +'<div class="ed-f" id="edNewCatF" style="display:none"><label>新类目名称</label><input id="edNewCat" placeholder="例如：旅行与见闻"><div class="ed-hint">发布时自动建好，之后就能在下拉里选到。</div></div>'
+  +'<div class="ed-f" id="edNewSubF" style="display:none"><label>新子类名称</label><input id="edNewSub" placeholder="例如：路上随笔"><div class="ed-hint">会在所属类目下新建一个子类。</div></div>'
+  +'<div class="ed-row3">'
+  +'<div class="ed-f"><label>文体</label><input id="edType" list="edTypeList" placeholder="散文 / 诗 / 设定…" value="'+esc(d.type)+'">'+dl('edTypeList',TYPES)+'</div>'
+  +'<div class="ed-f"><label>情绪</label><input id="edTone" list="edToneList" placeholder="平静 / 激烈…" value="'+esc(d.tone)+'">'+dl('edToneList',TONES)+'</div>'
+  +'<div class="ed-f"><label>标签</label><input id="edTags" placeholder="用逗号分隔" value="'+esc(d.tags)+'"></div>'
+  +'</div>'
+  +'<div class="ed-f"><label>世界元素（可选）</label><input id="edEnts" placeholder="用逗号分隔，会汇总到首页的「世界元素」" value="'+esc(d.entities)+'"></div>'
+  +'<div class="ed-f"><label>摘要（留空自动取正文第一句）</label><textarea id="edSum" rows="2" style="min-height:auto">'+esc(d.summary)+'</textarea></div>'
+  +'<div class="ed-f"><label>金句（可选）</label><input id="edQuote" value="'+esc(d.quote)+'"></div>'
+  +'<div class="ed-f"><label>正文</label><textarea id="edBody" placeholder="在这里写。每个字都会实时存进本地，关掉页面也不会丢。">'+esc(d.body)+'</textarea></div>'
+  +'<div class="ed-foot"><span class="ed-stat" id="edStat"></span><span class="sp"></span>'
+  +'<button class="btn" id="edCopy">复制 Markdown</button>'
+  +'<button class="btn" id="edDl">下载 .md</button>'
+  +'<button class="btn danger" id="edDel">删除草稿</button>'
+  +'<button class="btn pri" id="edPub2">发布到网站</button>'
+  +'</div>'
+  +'</div></div>';
+
+  $('#edCat').value=d.catKey||'';
+  $('#edSub').value=d.subSel||'';
+
+  function bind(id,key){
+    var el=$('#'+id); if(!el)return;
+    var h=function(){ var c=curDraft(); if(!c)return; c[key]=el.value; c.updatedAt=Date.now(); touch() };
+    el.addEventListener('input',h); el.addEventListener('change',h);
+  }
+  bind('edTitle','title'); bind('edType','type'); bind('edTone','tone');
+  bind('edTags','tags'); bind('edEnts','entities'); bind('edSum','summary');
+  bind('edQuote','quote'); bind('edBody','body');
+
+  $('#edNewCat').addEventListener('input',function(){ var c=curDraft(); if(!c)return; c.catName=this.value; c.updatedAt=Date.now(); touch(); syncRows() });
+  $('#edNewSub').addEventListener('input',function(){ var c=curDraft(); if(!c)return; c.subName=this.value; c.updatedAt=Date.now(); touch(); syncRows() });
+
+  $('#edCat').addEventListener('change',function(){
+    var c=curDraft(); if(!c)return;
+    c.catKey=this.value;
+    var cc=catByKey(c.catKey);
+    if(cc) c.catName=cc.name;
+    else if(c.catKey!=='__new__') c.catName='';
+    c.subSel=''; c.subName='';
+    c.updatedAt=Date.now(); saveDrafts(); renderEditor();
+  });
+  $('#edSub').addEventListener('change',function(){
+    var c=curDraft(); if(!c)return;
+    var was=c.subSel;
+    c.subSel=this.value;
+    if(c.subSel==='__new__'){ if(was!=='__new__') c.subName='' }
+    else c.subName=c.subSel;
+    c.updatedAt=Date.now(); saveDrafts(); syncRows(); touch();
+  });
+
+  $('#edList').addEventListener('click',function(e){
+    var b=e.target.closest('.ed-d'); if(!b)return;
+    if(saveTimer){ clearTimeout(saveTimer); saveDrafts() }
+    cur=b.dataset.d; lsStrSet(DCKEY,cur); renderEditor();
+  });
+  $('#edNew').onclick=function(){
+    if(saveTimer){ clearTimeout(saveTimer); saveDrafts() }
+    var n=newDraft(); drafts.unshift(n); cur=n.id; lsStrSet(DCKEY,cur); saveDrafts(); renderEditor();
+    edMsg('info','新草稿已建好，直接开写。');
+  };
+  $('#edImport').onclick=function(){ $('#edFiles').click() };
+  $('#edSplit').onclick=openSplit;
+  $('#edSet').onclick=openSettings;
+  $('#edPub').onclick=publish;
+  $('#edPub2').onclick=publish;
+  $('#edCopy').onclick=copyMd;
+  $('#edDl').onclick=downloadMd;
+  $('#edDel').onclick=function(){
+    var c=curDraft(); if(!c)return;
+    if(!confirm('删掉本地草稿《'+(c.title||'未命名')+'》？\n（只删浏览器里的草稿，已经发布到网站的不受影响）'))return;
+    drafts=drafts.filter(function(x){return x.id!==c.id});
+    if(!drafts.length) drafts=[newDraft()];
+    cur=drafts[0].id; lsStrSet(DCKEY,cur); saveDrafts(); renderEditor();
+    edMsg('info','草稿已删除。');
+  };
+  var form=$('#edForm');
+  form.addEventListener('dragover',function(e){ e.preventDefault(); form.classList.add('drop-on') });
+  form.addEventListener('dragleave',function(){ form.classList.remove('drop-on') });
+  form.addEventListener('drop',function(e){
+    e.preventDefault(); form.classList.remove('drop-on');
+    if(e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) importFiles(e.dataTransfer.files);
+  });
+
+  renderList(); updateCount(); syncRows();
+  markSaved();
+}
+function syncRows(){
+  var d=curDraft(); if(!d)return;
+  var nc=$('#edNewCatF'), ns=$('#edNewSubF');
+  if(nc) nc.style.display=(d.catKey==='__new__')?'block':'none';
+  if(ns) ns.style.display=(d.subSel==='__new__')?'block':'none';
+  var cat=catByKey(d.catKey);
+  var hc=$('#edCatHint');
+  if(hc) hc.textContent = cat ? ('→ '+cat.folder) : (d.catKey==='__new__' ? '→ 发布时自动新建' : '');
+  var hs=$('#edSubHint');
+  if(hs){ var t=resolveTargets(d); hs.textContent='→ '+t.catFolder+'/'+t.subFolder }
+}
+
+/* ---- 发布 ---- */
+function publish(){
+  var d=curDraft(); if(!d)return;
+  if(!String(d.title||'').replace(/\s/g,'')){ edMsg('err','先给这篇起个标题。'); var a=$('#edTitle'); if(a)a.focus(); return }
+  if(d.catKey==='__new__' && !String(d.catName||'').replace(/\s/g,'')){ edMsg('err','新类目还没起名字。'); var b=$('#edNewCat'); if(b)b.focus(); return }
+  if(!REPO){ edMsg('err','站点配置里没有 repo，无法发布。'); return }
+  if(!ghToken()){ edMsg('err','还没填 GitHub Token。点上方「设置 Token」填一次即可。'); return }
+  if(saveTimer){ clearTimeout(saveTimer); saveDrafts() }
+  var tgt=resolveTargets(d);
+  var fileName=sanitize(d.title)+'.md';
+  var path=CDIR+'/'+tgt.catFolder+'/'+tgt.subFolder+'/'+fileName;
+  var md=buildMd(d);
+  setBusy(true);
+  edMsg('info','正在发布到 '+path+' …');
+  var pre=(!tgt.cat && d.catName) ? ensureCategory(d.catName).catch(function(){return null}) : Promise.resolve();
+  pre.then(function(){
+    return ghFetch('contents/'+encPath(path)).then(function(r){return r&&r.sha}).catch(function(e){ if(e.status===404)return null; throw e });
+  }).then(function(sha){
+    var body={message:'写作台：新增《'+(d.title||'未命名')+'》',content:b64enc(md),branch:BRANCH};
+    if(sha) body.sha=sha;
+    return ghFetch('contents/'+encPath(path),{method:'PUT',body:body});
+  }).then(function(){
+    d.publishedPath=path; d.updatedAt=Date.now(); saveDrafts(); renderList();
+    var fileUrl='https://github.com/'+REPO+'/blob/'+BRANCH+'/'+encPath(path);
+    var el=$('#edMsg'); el.className='ed-msg show ok';
+    el.innerHTML='已发布 ✓ 文件进了仓库，Actions 重建大约 1 分钟后网站上就能看到。 '
+      +'<a target="_blank" rel="noopener" href="'+fileUrl+'">在 GitHub 上看这篇</a> · '
+      +'<a target="_blank" rel="noopener" href="https://github.com/'+REPO+'/actions">看构建进度</a>';
+  }).catch(function(e){
+    if(e.status===401||e.status===403) edMsg('err','Token 无效或没有写权限：'+e.message+'（Fine-grained token 需要 Contents: Read and write）');
+    else if(e.status===409) edMsg('err','GitHub 报文件冲突，等几秒再点一次发布。');
+    else if(e.status===422) edMsg('err','GitHub 拒绝了这次提交：'+e.message);
+    else edMsg('err','发布失败：'+e.message);
+  }).then(function(){ setBusy(false) });
+}
+function copyMd(){
+  var d=curDraft(); if(!d)return;
+  var md=buildMd(d);
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(md).then(function(){ edMsg('ok','Markdown 已复制。可以直接去 GitHub 新建文件粘贴。') },
+      function(){ edMsg('err','复制失败，改用「下载 .md」。') });
+  } else edMsg('info','这个浏览器不支持自动复制，用「下载 .md」吧。');
+}
+function downloadMd(){
+  var d=curDraft(); if(!d)return;
+  var blob=new Blob([buildMd(d)],{type:'text/markdown;charset=utf-8'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  a.href=url; a.download=sanitize(d.title)+'.md';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(url) },4000);
+}
+
+/* ---- 设置 Token ---- */
+function openSettings(){
+  var m=$('#edModal');
+  m.innerHTML='<div class="box">'
+   +'<h3>GitHub 设置</h3>'
+   +'<div class="sub">发布要有一枚能写 <b>'+esc(REPO||'（未配置）')+'</b> 的 Token。推荐 Fine-grained token：Repository access 只勾这一个仓库，Permissions 里 <b>Contents</b> 选 <b>Read and write</b>。'
+   +'Token 只存在你这台浏览器的本地存储里，除了 api.github.com 不会发给任何地方。</div>'
+   +'<div class="ed-f"><label>Personal Access Token</label><input type="password" id="ghT" autocomplete="off" placeholder="github_pat_… 或 ghp_…" value="'+esc(ghToken())+'"></div>'
+   +'<div class="ed-msg" id="ghMsg"></div>'
+   +'<div class="ed-foot" style="border:0;padding:0;margin:0">'
+   +'<button class="btn pri" id="ghSave">保存</button>'
+   +'<button class="btn" id="ghTest">测试连接</button>'
+   +'<button class="btn danger" id="ghClear">清除</button>'
+   +'<span class="sp"></span><button class="btn" id="ghClose">关闭</button>'
+   +'</div>'
+   +'<div class="ed-hint" style="margin-top:14px">申请入口：'
+   +'<a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Fine-grained token</a>（推荐）或 '
+   +'<a href="https://github.com/settings/tokens/new" target="_blank" rel="noopener">经典 token</a>（勾 repo）</div>'
+   +'</div>';
+  m.classList.add('show');
+  m.onclick=function(e){ if(e.target===m) m.classList.remove('show') };
+  $('#ghClose').onclick=function(){ m.classList.remove('show') };
+  $('#ghSave').onclick=function(){ lsStrSet(GHKEY,$('#ghT').value.trim()); ghMsg('ok','已保存。关掉这个窗口就能去发布了。') };
+  $('#ghClear').onclick=function(){ lsStrSet(GHKEY,''); $('#ghT').value=''; ghMsg('info','已清除本机保存的 Token。') };
+  $('#ghTest').onclick=function(){
+    var tok=$('#ghT').value.trim();
+    if(!tok){ ghMsg('err','先填 Token 再测。'); return }
+    if(!REPO){ ghMsg('err','站点没配 repo。'); return }
+    lsStrSet(GHKEY,tok); ghMsg('info','正在测试…');
+    fetch('https://api.github.com/repos/'+REPO,{headers:{'Authorization':'Bearer '+tok,'Accept':'application/vnd.github+json'}})
+      .then(function(r){ return r.json().then(function(j){ return {ok:r.ok,status:r.status,j:j} }) })
+      .then(function(x){
+        if(!x.ok){ ghMsg('err','连不上：'+((x.j&&x.j.message)||('HTTP '+x.status))); return }
+        var push=x.j.permissions && x.j.permissions.push;
+        if(push) ghMsg('ok','连接正常，对 '+x.j.full_name+' 有写权限，可以发布。');
+        else ghMsg('err','能读到仓库，但这枚 Token 没有写权限。请把 Contents 改成 Read and write。');
+      })
+      .catch(function(e){ ghMsg('err','请求失败：'+e.message) });
+  };
+}
+
+/* ---- 粘贴拆分 ---- */
+function splitText(t){
+  t=String(t||'').replace(/\r\n?/g,'\n').replace(/^\s+|\s+$/g,'');
+  if(!t) return [];
+  var lines=t.split('\n'), heads=[];
+  lines.forEach(function(ln,i){ if(/^#{1,6}\s+\S/.test(ln)) heads.push(i) });
+  var out=[];
+  if(heads.length>=2){
+    for(var k=0;k<heads.length;k++){
+      var s=heads[k], e=(k+1<heads.length)?heads[k+1]:lines.length;
+      out.push({title:lines[s].replace(/^#{1,6}\s+/,'').trim(),
+                body:lines.slice(s+1,e).join('\n').replace(/^\s+|\s+$/g,'')});
+    }
+    return out;
+  }
+  var chunks=t.split(/\n\s*\n\s*\n+/);
+  if(chunks.length<2) chunks=t.split(/\n\s*\n/);
+  chunks.forEach(function(c){
+    c=c.replace(/^\s+|\s+$/g,''); if(!c) return;
+    var l=c.split('\n');
+    if(l.length>1) out.push({title:l[0].replace(/^#{1,6}\s+/,'').trim().slice(0,40),
+                             body:l.slice(1).join('\n').replace(/^\s+|\s+$/g,'')});
+    else out.push({title:c.slice(0,40), body:c});
+  });
+  return out;
+}
+function openSplit(){
+  var m=$('#edModal');
+  m.innerHTML='<div class="box">'
+   +'<h3>粘贴拆分</h3>'
+   +'<div class="sub">把一大段文字粘进来，按标题（# 开头）或空行自动拆成多篇。先预览，确认了再导入成草稿。</div>'
+   +'<textarea id="pkBox" placeholder="在这里粘贴…"></textarea>'
+   +'<div class="ed-msg" id="pkMsg"></div>'
+   +'<div id="pkPrev"></div>'
+   +'<div class="ed-foot" style="border:0;padding:0;margin-top:14px">'
+   +'<button class="btn pri" id="pkGo">拆分</button>'
+   +'<button class="btn" id="pkImp" style="display:none">全部导入为草稿</button>'
+   +'<span class="sp"></span><button class="btn" id="pkClose">关闭</button>'
+   +'</div></div>';
+  m.classList.add('show');
+  m.onclick=function(e){ if(e.target===m) m.classList.remove('show') };
+  $('#pkClose').onclick=function(){ m.classList.remove('show') };
+  var pieces=[];
+  $('#pkGo').onclick=function(){
+    pieces=splitText($('#pkBox').value);
+    var pm=$('#pkMsg');
+    if(!pieces.length){ pm.className='ed-msg show err'; pm.textContent='没拆出内容，是不是空的？'; $('#pkImp').style.display='none'; $('#pkPrev').innerHTML=''; return }
+    pm.className='ed-msg show ok'; pm.textContent='拆出 '+pieces.length+' 篇，确认后导入。';
+    $('#pkPrev').innerHTML=pieces.map(function(p){
+      return '<div class="pk"><b>'+esc(p.title||'(无标题)')+'</b><i>'+wc(p.body)+' 字</i></div>';
+    }).join('');
+    $('#pkImp').style.display='inline-flex';
+  };
+  $('#pkImp').onclick=function(){
+    if(!pieces.length) return;
+    var made=[];
+    pieces.forEach(function(p){ var d=newDraft(); d.title=p.title; d.body=p.body; drafts.unshift(d); made.push(d.id) });
+    saveDrafts(); cur=made[0]; lsStrSet(DCKEY,cur);
+    m.classList.remove('show'); renderEditor();
+    edMsg('ok','已导入 '+made.length+' 篇草稿。逐篇补上类目和子类，再发布。');
+  };
+}
+
+/* ---- 导入本地文件 ---- */
+function parseFM(txt){
+  txt=String(txt||'').replace(/^\uFEFF/,'');
+  if(txt.indexOf('---')!==0) return {data:{},body:txt};
+  var m=txt.match(/^---\s*\n([\s\S]*?)\n---\s*\n?/);
+  if(!m) return {data:{},body:txt};
+  var data={}, curKey=null;
+  m[1].split('\n').forEach(function(ln){
+    if(!ln.replace(/\s/g,'')) return;
+    var lm=ln.match(/^\s*-\s+(.*)$/);
+    if(lm && curKey){
+      if(!Array.isArray(data[curKey])) data[curKey]=[];
+      data[curKey].push(lm[1].trim().replace(/^["']|["']$/g,''));
+      return;
+    }
+    var kv=ln.match(/^([^:]+):\s*(.*)$/); if(!kv) return;
+    var k=kv[1].trim(), v=kv[2].trim(); curKey=k;
+    if(v==='') data[k]=[];
+    else if(v.charAt(0)==='[' && v.slice(-1)===']')
+      data[k]=v.slice(1,-1).split(',').map(function(x){return x.trim().replace(/^["']|["']$/g,'')}).filter(Boolean);
+    else data[k]=v.replace(/^["']|["']$/g,'');
+  });
+  return {data:data, body:txt.slice(m[0].length)};
+}
+function importFiles(files){
+  var arr=[]; for(var i=0;i<files.length;i++) arr.push(files[i]);
+  if(!arr.length) return;
+  var pending=arr.length, made=[];
+  arr.forEach(function(file){
+    var r=new FileReader();
+    r.onerror=function(){ pending--; if(!pending) done() };
+    r.onload=function(){
+      try{
+        var fm=parseFM(String(r.result||''));
+        var d=newDraft();
+        d.title=fm.data.title||file.name.replace(/\.(md|markdown|txt)$/i,'');
+        var cat=null;
+        if(fm.data.category){
+          var raw=String(fm.data.category);
+          cat=catByName(raw);
+          if(cat){ d.catKey=cat.key; d.catName=cat.name }
+          else { d.catKey='__new__'; d.catName=raw }
+        }
+        if(fm.data.subcategory){
+          d.subName=String(fm.data.subcategory);
+          var found=false;
+          if(cat) (cat.subs||[]).forEach(function(s){ if(s.name===d.subName) found=true });
+          d.subSel=found?d.subName:'__new__';
+        }
+        d.type=fm.data.type||''; d.tone=fm.data.tone||'';
+        d.tags=listToStr(fm.data.tags); d.entities=listToStr(fm.data.entities);
+        d.summary=fm.data.summary||''; d.quote=fm.data.quote||'';
+        d.body=String(fm.body||'').replace(/^\s+|\s+$/g,'');
+        drafts.unshift(d); made.push(d.id);
+      }catch(e){}
+      pending--; if(!pending) done();
+    };
+    r.readAsText(file,'utf-8');
+  });
+  function done(){
+    if(!made.length){ edMsg('err','这些文件没能读进来。'); return }
+    saveDrafts(); cur=made[0]; lsStrSet(DCKEY,cur); renderEditor();
+    edMsg('ok','已导入 '+made.length+' 个文件为草稿'+(made.length<arr.length?('（'+(arr.length-made.length)+' 个读取失败）'):'')+'。');
+  }
+}
+
+$('#btnWrite').onclick=function(){
+  if(/^#\/write/.test(location.hash)) openEditor();
+  else location.hash='#/write';
+};
+$('#edFiles').addEventListener('change',function(){ importFiles(this.files); this.value='' });
+window.addEventListener('beforeunload',function(){ if(saveTimer){ clearTimeout(saveTimer); saveDrafts() } });
+
 buildTree(); route();
 </script>
 </body>
