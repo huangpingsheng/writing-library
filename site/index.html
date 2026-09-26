@@ -107,7 +107,8 @@ header{
 .tp-i .tick{margin-left:auto;font-size:11px;opacity:0}
 .tp-i.on .tick{opacity:1}
 
-.layout{flex:1;display:flex;min-height:0}
+.layout{flex:1;display:flex;min-height:0;position:relative}
+.side-bd{display:none}
 aside{
   width:296px; flex:0 0 296px; border-right:1px solid var(--line);
   background:var(--panel); overflow-y:auto; overflow-x:hidden; padding:14px 0 40px;
@@ -205,6 +206,7 @@ aside.hide{margin-left:-296px}
 .editbtn{
   font-size:11.5px;padding:3px 10px;border-radius:20px;text-decoration:none;
   border:1px solid var(--line);color:var(--ink2);transition:.14s;
+  background:none;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:4px;line-height:1.6;
 }
 .editbtn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
 .abstract{
@@ -248,13 +250,39 @@ aside.hide{margin-left:-296px}
 
 .progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:80;transition:width .1s}
 @media(max-width:900px){
-  aside{position:absolute;left:0;top:58px;bottom:0;z-index:15;box-shadow:var(--shadow)}
-  aside.hide{margin-left:-296px}
+  aside{position:absolute;left:0;top:0;bottom:0;z-index:16;box-shadow:var(--shadow);transform:translateX(0)}
+  aside.hide{margin-left:0;transform:translateX(-100%)}
+  .side-bd{position:absolute;inset:0;background:rgba(20,18,16,.45);z-index:15;display:none}
+  .side-bd.show{display:block}
   .wrap{padding:22px 18px 100px}
-  .search{max-width:none}
-  header{gap:8px;padding:0 12px}
-  .brand small{display:none}
   .theme-pop{right:10px}
+}
+@media(max-width:760px){
+  header{height:auto;min-height:56px;flex-wrap:wrap;gap:6px;padding:8px 10px}
+  .brand{font-size:15px}
+  .brand small{display:none}
+  .spacer{display:none}
+  .search{order:99;flex:1 0 100%;max-width:none;height:34px;font-size:16px}
+  .tbtn{height:31px;padding:0 10px;font-size:12.5px}
+  .theme-pop{left:10px;right:10px;top:auto;bottom:10px;min-width:0;max-height:70vh;overflow:auto}
+  .wrap{padding:18px 14px 96px}
+  .wrap.wide{max-width:none}
+  .hero h1{font-size:23px}
+  .hero p{font-size:13.5px}
+  .stats{gap:18px}
+  .stat b{font-size:19px}
+  .list-h h2{font-size:19px}
+  .read-h h1{font-size:21px}
+  .grid{grid-template-columns:1fr}
+  .card:hover,.item:hover{transform:none}
+  .body-text{font-size:var(--fs,16.5px);line-height:1.9}
+  .ed-form{padding:14px 14px 16px}
+  .ed-bar h2{font-size:18px;flex:1 0 100%;margin-right:0}
+  .ed-bar .btn{height:32px;padding:0 12px;font-size:12.5px}
+  .ed-f input,.ed-f select,.ed-f textarea,.modal textarea{font-size:16px}
+  #edBody{min-height:280px}
+  .modal{padding:12px}
+  .modal .box{padding:16px;border-radius:14px;max-height:92vh}
 }
 
 /* ============ 写作台 ============ */
@@ -276,6 +304,8 @@ aside.hide{margin-left:-296px}
 .ed-d .st.ok{background:var(--accent-soft);color:var(--accent);border-color:transparent}
 .ed-empty{font-size:12.5px;color:var(--ink3);padding:16px 13px;line-height:1.8}
 .ed-form{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:18px 20px 20px}
+.ed-edit{font-size:12px;color:var(--accent);background:var(--accent-soft);border-radius:9px;padding:8px 11px;margin-bottom:13px;line-height:1.6;word-break:break-all}
+.ed-edit b{font-weight:600}
 .ed-form.drop-on{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 .ed-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .ed-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
@@ -343,9 +373,10 @@ aside.hide{margin-left:-296px}
   <div class="tp-h">选一个主题</div>
   <div id="themeList"></div>
 </div>
-<div class="layout">
+<div class="layout" id="layout">
   <aside id="aside"><div class="side-title">分类目录</div><div id="tree"></div><div class="side-foot" id="sideFoot"></div></aside>
   <div class="main" id="main"><div class="wrap" id="view"></div></div>
+  <div class="side-bd" id="sideBd"></div>
 </div>
 
 <div class="modal" id="edModal"></div>
@@ -441,8 +472,8 @@ function buildTree(){
   $('#tree').addEventListener('click',function(e){
     var ct=e.target.closest('.cat-h'), sh=e.target.closest('.sub-h'), fi=e.target.closest('.f-i');
     if(ct){ct.parentElement.classList.toggle('open');return}
-    if(sh){var s=sh.closest('.sub');s.classList.toggle('open');openSub(s.dataset.s);return}
-    if(fi){openFile(fi.dataset.f)}
+    if(sh){var s=sh.closest('.sub');s.classList.toggle('open');openSub(s.dataset.s);if(isNarrow())setSide(false);return}
+    if(fi){openFile(fi.dataset.f);if(isNarrow())setSide(false)}
   });
   if(REPO){
     $('#sideFoot').innerHTML='<div class="sf-h">想改点什么</div>'
@@ -530,7 +561,8 @@ function openFile(title){
    +'<h1 class="serif">'+esc(f.title)+'</h1>'
    +'<div class="metabar"><span class="pill">'+f.words+' 字</span><span class="pill">'+esc(f.type)+'</span><span class="pill">'+esc(f.tone)+'</span>'
    +'<span>'+esc(f.sub)+' '+esc(s.name)+'</span>';
-  if(REPO) h+='<a class="editbtn" target="_blank" rel="noopener" href="'+editUrl(f)+'">✎ 编辑这篇</a>';
+  if(REPO) h+='<a class="editbtn" target="_blank" rel="noopener" href="'+editUrl(f)+'">✎ 在 GitHub 改</a>';
+  if(f.path) h+='<button class="editbtn" data-edit="'+esc(f.title)+'">✎ 直接编辑</button>';
   h+='</div>'
    +'<div class="abstract"><b>摘要　</b>'+esc(f.summary)+'</div>';
   if(f.quote) h+='<div class="quote serif">“'+esc(f.quote)+'”</div>';
@@ -592,6 +624,7 @@ function bind(){
   view.querySelectorAll('[data-c]').forEach(function(el){el.onclick=function(){openCat(el.dataset.c)}});
   view.querySelectorAll('[data-s]').forEach(function(el){el.onclick=function(){openSub(el.dataset.s)}});
   view.querySelectorAll('[data-e]').forEach(function(el){el.onclick=function(){search(el.dataset.e)}});
+  view.querySelectorAll('[data-edit]').forEach(function(el){el.onclick=function(){editExisting(el.dataset.edit)}});
 }
 function markTree(title){
   document.querySelectorAll('.f-i.on').forEach(function(e){e.classList.remove('on')});
@@ -618,8 +651,23 @@ $('#brandName').textContent=SITE.title||'写作库';
 document.title=SITE.title||'写作库';
 $('#brandsub').textContent=TOTAL+' 篇 · '+TOTALW.toLocaleString()+' 字';
 $('#home').onclick=home;
+var SIDEKEY='lib-side';
+function isNarrow(){return window.matchMedia('(max-width:900px)').matches}
+function sideOpen(){return !aside.classList.contains('hide')}
+function setSide(open){
+  aside.classList.toggle('hide',!open);
+  $('#btnSide').classList.toggle('on',open);
+  $('#sideBd').classList.toggle('show',!!open && isNarrow());
+  try{localStorage.setItem(SIDEKEY,open?'1':'0')}catch(e){}
+}
+function initSide(){
+  var saved=null; try{saved=localStorage.getItem(SIDEKEY)}catch(e){}
+  setSide(isNarrow() ? false : (saved!=='0'));
+}
+window.addEventListener('resize',function(){ $('#sideBd').classList.toggle('show',sideOpen()&&isNarrow()) });
 $('#q').addEventListener('input',function(){search(this.value)});
-$('#btnSide').onclick=function(){aside.classList.toggle('hide')};
+$('#btnSide').onclick=function(){setSide(!sideOpen())};
+$('#sideBd').onclick=function(){setSide(false)};
 $('#btnRand').onclick=function(){if(flat.length)openFile(flat[Math.floor(Math.random()*flat.length)].title)};
 $('#btnFs').onclick=function(){FS=Math.max(13,FS-1);document.documentElement.style.setProperty('--fs',FS+'px')};
 $('#btnFs2').onclick=function(){FS=Math.min(24,FS+1);document.documentElement.style.setProperty('--fs',FS+'px')};
@@ -651,6 +699,7 @@ function newDraft(){
   return {id:'d'+Date.now().toString(36)+Math.floor(Math.random()*1e4).toString(36),
     title:'',catKey:'',catName:'',subSel:'',subName:'',
     type:'',tone:'',tags:'',entities:'',summary:'',quote:'',body:'',
+    extra:[],srcPath:'',srcTitle:'',srcSha:'',srcFailed:false,
     updatedAt:Date.now(),publishedPath:''};
 }
 function wc(s){return String(s==null?'':s).replace(/\s/g,'').length}
@@ -665,6 +714,10 @@ function sanitize(s){
 }
 function catByKey(k){for(var i=0;i<LIB.cats.length;i++) if(LIB.cats[i].key===k) return LIB.cats[i];return null}
 function catByName(n){for(var i=0;i<LIB.cats.length;i++) if(LIB.cats[i].name===n) return LIB.cats[i];return null}
+function catByAnyName(n){
+  var s=String(n==null?'':n).trim(); if(!s) return null;
+  return catByKey(normKey(s)) || catByName(s) || null;
+}
 function nextCatIndex(){
   var mx=0;
   LIB.cats.forEach(function(c){var m=String(c.folder||'').match(/^(\d+)/); if(m) mx=Math.max(mx,parseInt(m[1],10))});
@@ -705,6 +758,12 @@ function buildMd(d){
   if(d.quote) L.push('quote: '+yv(d.quote));
   var ents=splitList(d.entities);
   if(ents.length){ L.push('entities:'); ents.forEach(function(t){L.push('  - '+t)}) }
+  (d.extra||[]).forEach(function(kv){
+    var k=kv[0], v=kv[1];
+    if(v==null||v==='') return;
+    if(Array.isArray(v)){ if(!v.length) return; L.push(k+':'); v.forEach(function(x){L.push('  - '+x)}) }
+    else L.push(k+': '+yv(v));
+  });
   L.push('---');
   L.push('');
   L.push(String(d.body||'').replace(/[\s\u3000]+$/,''));
@@ -727,7 +786,8 @@ function decodeB64(b){
 }
 function ghFetch(path,opts){
   opts=opts||{};
-  var h={'Accept':'application/vnd.github+json','Authorization':'Bearer '+ghToken()};
+  var h={'Accept':'application/vnd.github+json'};
+  var tk=ghToken(); if(tk) h['Authorization']='Bearer '+tk;
   if(opts.body) h['Content-Type']='application/json';
   return fetch('https://api.github.com/repos/'+REPO+'/'+path,{
     method:opts.method||'GET', headers:h,
@@ -780,7 +840,7 @@ function renderList(){
   drafts.forEach(function(d){
     h+='<button class="ed-d'+(d.id===cur?' on':'')+'" data-d="'+esc(d.id)+'">'
       +'<b>'+esc(d.title||'(未命名)')+'</b>'
-      +'<span>'+wc(d.body)+' 字'+(d.publishedPath?'<span class="st ok">已发布</span>':'')+'</span>'
+      +'<span>'+wc(d.body)+' 字'+(d.srcPath?'<span class="st ok">改稿</span>':(d.publishedPath?'<span class="st ok">已发布</span>':''))+'</span>'
       +'</button>';
   });
   box.innerHTML=h;
@@ -812,18 +872,22 @@ function renderEditor(){
   subOpts+='<option value="__new__">＋ 新建子类…</option>';
   var dl=function(id,arr){ return '<datalist id="'+id+'">'+arr.map(function(t){return '<option value="'+esc(t)+'">'}).join('')+'</datalist>' };
 
+  var isEdit=!!d.srcPath;
+  var pubLabel=isEdit?'保存修改':'发布到网站';
   view.innerHTML=''
   +'<div class="ed-bar"><h2 class="serif">写作台 <small id="edSaved"></small></h2>'
   +'<button class="btn" id="edNew">＋ 新建</button>'
   +'<button class="btn" id="edImport">导入文件</button>'
   +'<button class="btn" id="edSplit">粘贴拆分</button>'
+  +(isEdit?'<button class="btn" id="edPull">⟳ 取回原文</button>':'')
   +'<button class="btn" id="edSet">设置 Token</button>'
-  +'<button class="btn pri" id="edPub">发布到网站</button>'
+  +'<button class="btn pri" id="edPub">'+pubLabel+'</button>'
   +'</div>'
   +'<div class="ed-grid">'
   +'<div class="ed-side"><div class="h">草稿箱 <b id="edCnt"></b></div><div class="ed-list" id="edList"></div></div>'
   +'<div class="ed-form" id="edForm">'
   +'<div class="ed-msg" id="edMsg"></div>'
+  +(isEdit?'<div class="ed-edit">正在改站内已有的一篇：<b>'+esc(d.srcPath)+'</b><br>改完点「保存修改」，提交回同一个文件；换了类目或标题会自动挪到新位置。</div>':'')
   +'<div class="ed-f"><label>标题</label><input class="ti" id="edTitle" placeholder="这篇叫什么" value="'+esc(d.title)+'"></div>'
   +'<div class="ed-row">'
   +'<div class="ed-f"><label>类目</label><select id="edCat">'+catOpts+'</select><div class="ed-hint" id="edCatHint"></div></div>'
@@ -844,7 +908,7 @@ function renderEditor(){
   +'<button class="btn" id="edCopy">复制 Markdown</button>'
   +'<button class="btn" id="edDl">下载 .md</button>'
   +'<button class="btn danger" id="edDel">删除草稿</button>'
-  +'<button class="btn pri" id="edPub2">发布到网站</button>'
+  +'<button class="btn pri" id="edPub2">'+pubLabel+'</button>'
   +'</div>'
   +'</div></div>';
 
@@ -894,6 +958,7 @@ function renderEditor(){
   $('#edImport').onclick=function(){ $('#edFiles').click() };
   $('#edSplit').onclick=openSplit;
   $('#edSet').onclick=openSettings;
+  if($('#edPull')) $('#edPull').onclick=function(){ pullSource(curDraft()) };
   $('#edPub').onclick=publish;
   $('#edPub2').onclick=publish;
   $('#edCopy').onclick=copyMd;
@@ -929,40 +994,144 @@ function syncRows(){
   if(hs){ var t=resolveTargets(d); hs.textContent='→ '+t.catFolder+'/'+t.subFolder }
 }
 
-/* ---- 发布 ---- */
+/* ---- 发布 / 保存修改 ---- */
+function ghDelete(path,sha,message){
+  return ghFetch('contents/'+encPath(path),{method:'DELETE',body:{message:message,sha:sha,branch:BRANCH}});
+}
 function publish(){
   var d=curDraft(); if(!d)return;
   if(!String(d.title||'').replace(/\s/g,'')){ edMsg('err','先给这篇起个标题。'); var a=$('#edTitle'); if(a)a.focus(); return }
   if(d.catKey==='__new__' && !String(d.catName||'').replace(/\s/g,'')){ edMsg('err','新类目还没起名字。'); var b=$('#edNewCat'); if(b)b.focus(); return }
   if(!REPO){ edMsg('err','站点配置里没有 repo，无法发布。'); return }
   if(!ghToken()){ edMsg('err','还没填 GitHub Token。点上方「设置 Token」填一次即可。'); return }
+  var isEdit=!!d.srcPath;
+  if(isEdit && d.srcFailed){ edMsg('err','这篇还没从仓库取回原文，先点「⟳ 取回原文」，免得把正文改丢。'); return }
   if(saveTimer){ clearTimeout(saveTimer); saveDrafts() }
   var tgt=resolveTargets(d);
-  var fileName=sanitize(d.title)+'.md';
-  var path=CDIR+'/'+tgt.catFolder+'/'+tgt.subFolder+'/'+fileName;
+  var oldPath=isEdit?d.srcPath:'';
+  var sameTitle=isEdit && sanitize(d.title)===sanitize(d.srcTitle||d.title);
+  var origBase=oldPath?(oldPath.split('/').pop()||''):'';
+  var fileName=(isEdit && sameTitle && origBase)?origBase:(sanitize(d.title)+'.md');
+  var wantPath=CDIR+'/'+tgt.catFolder+'/'+tgt.subFolder+'/'+fileName;
   var md=buildMd(d);
   setBusy(true);
-  edMsg('info','正在发布到 '+path+' …');
+  edMsg('info','正在'+(isEdit?'保存修改':'发布')+' → '+wantPath+' …');
   var pre=(!tgt.cat && d.catName) ? ensureCategory(d.catName).catch(function(){return null}) : Promise.resolve();
+  var moved=false;
   pre.then(function(){
-    return ghFetch('contents/'+encPath(path)).then(function(r){return r&&r.sha}).catch(function(e){ if(e.status===404)return null; throw e });
+    return ghFetch('contents/'+encPath(wantPath)).then(function(r){return r&&r.sha}).catch(function(e){ if(e.status===404)return null; throw e });
   }).then(function(sha){
-    var body={message:'写作台：新增《'+(d.title||'未命名')+'》',content:b64enc(md),branch:BRANCH};
+    var body={message:'写作台：'+(isEdit?'修改':'新增')+'《'+(d.title||'未命名')+'》',content:b64enc(md),branch:BRANCH};
     if(sha) body.sha=sha;
-    return ghFetch('contents/'+encPath(path),{method:'PUT',body:body});
+    return ghFetch('contents/'+encPath(wantPath),{method:'PUT',body:body});
   }).then(function(){
-    d.publishedPath=path; d.updatedAt=Date.now(); saveDrafts(); renderList();
-    var fileUrl='https://github.com/'+REPO+'/blob/'+BRANCH+'/'+encPath(path);
+    if(isEdit && oldPath && oldPath!==wantPath){
+      moved=true;
+      return ghFetch('contents/'+encPath(oldPath)).then(function(r){
+        if(r&&r.sha) return ghDelete(oldPath,r.sha,'写作台：移动《'+(d.title||'未命名')+'》到新位置');
+      }).catch(function(){ return null });
+    }
+  }).then(function(){
+    d.publishedPath=wantPath;
+    if(isEdit){ d.srcPath=wantPath; d.srcTitle=d.title; d.srcFailed=false }
+    d.updatedAt=Date.now(); saveDrafts(); renderList(); syncRows();
+    var fileUrl='https://github.com/'+REPO+'/blob/'+BRANCH+'/'+encPath(wantPath);
     var el=$('#edMsg'); el.className='ed-msg show ok';
-    el.innerHTML='已发布 ✓ 文件进了仓库，Actions 重建大约 1 分钟后网站上就能看到。 '
+    el.innerHTML=(isEdit?'修改已提交 ✓ ':'已发布 ✓ ')+(moved?'（文件已挪到新位置）':'')
+      +'文件进了仓库，Actions 重建大约 1 分钟后网站上就能看到。 '
       +'<a target="_blank" rel="noopener" href="'+fileUrl+'">在 GitHub 上看这篇</a> · '
       +'<a target="_blank" rel="noopener" href="https://github.com/'+REPO+'/actions">看构建进度</a>';
   }).catch(function(e){
-    if(e.status===401||e.status===403) edMsg('err','Token 无效或没有写权限：'+e.message+'（Fine-grained token 需要 Contents: Read and write）');
-    else if(e.status===409) edMsg('err','GitHub 报文件冲突，等几秒再点一次发布。');
+    if(e.status===401) edMsg('err','Token 失效或已过期（GitHub 返回 401 Bad credentials）。去 GitHub 重新生成一枚，再点「设置 Token」填进来。');
+    else if(e.status===403) edMsg('err','这枚 Token 没有写权限：'+e.message+'（Fine-grained token 需要 Contents: Read and write）');
+    else if(e.status===409) edMsg('err','GitHub 报文件冲突，等几秒再点一次。');
     else if(e.status===422) edMsg('err','GitHub 拒绝了这次提交：'+e.message);
-    else edMsg('err','发布失败：'+e.message);
+    else edMsg('err',(isEdit?'保存失败：':'发布失败：')+e.message);
   }).then(function(){ setBusy(false) });
+}
+
+/* ---- 编辑站内已有的一篇 ---- */
+function gotoEditor(){
+  if(/^#\/write/.test(location.hash)) openEditor();
+  else location.hash='#/write';
+}
+function editExisting(title){
+  var f=byId[title]; if(!f) return;
+  if(!f.path){ alert('这篇在仓库里没有源文件路径，改不了。'); return }
+  loadDrafts();
+  if(saveTimer){ clearTimeout(saveTimer); saveDrafts() }
+  var ex=null;
+  drafts.forEach(function(d){ if(d.srcPath===f.path) ex=d });
+  if(ex){ cur=ex.id; lsStrSet(DCKEY,cur); gotoEditor(); return }
+  var d=newDraft();
+  d.title=f.title; d.srcTitle=f.title; d.srcPath=f.path;
+  var c=catById[f.catId]||null;
+  if(c){ d.catKey=c.key; d.catName=c.name } else d.catName=f.catName||'';
+  d.subName=f.subName||''; d.subSel=f.subName||'';
+  d.type=f.type||''; d.tone=f.tone||'';
+  d.tags=(f.tags||[]).join('，');
+  d.entities=(f.entities||[]).join('，');
+  d.summary=f.summary||''; d.quote=f.quote||'';
+  d.body=f.text||'';
+  d.srcFailed=true;
+  drafts.unshift(d); cur=d.id; lsStrSet(DCKEY,cur); saveDrafts();
+  gotoEditor();
+  edMsg('info','正在从 GitHub 取回《'+f.title+'》的原文…');
+  pullSource(d);
+}
+function targetsFromPath(p){
+  var rel=String(p||'');
+  if(rel.indexOf(CDIR+'/')===0) rel=rel.slice(CDIR.length+1);
+  var parts=rel.split('/'), out={catFolder:parts[0]||'',subFolder:parts[1]||'',cat:null,sub:null};
+  LIB.cats.forEach(function(c){
+    if(c.folder===out.catFolder){
+      out.cat=c;
+      (c.subs||[]).forEach(function(s){ if(s.folder===out.subFolder) out.sub=s });
+    }
+  });
+  return out;
+}
+function pullSource(d){
+  if(!d||!d.srcPath) return;
+  edMsg('info','正在从 GitHub 取回原文…');
+  ghFetch('contents/'+encPath(d.srcPath)).then(function(r){
+    var fm=parseFM(decodeB64(r.content||''));
+    d.srcSha=r.sha||'';
+    if(fm.data.title) d.title=String(fm.data.title);
+    d.srcTitle=d.title;
+    // 归属以文件所在文件夹为准，保证「保存」时不会被挪走
+    var tp=targetsFromPath(d.srcPath);
+    var c=tp.cat||catByAnyName(fm.data.category);
+    if(c){ d.catKey=c.key; d.catName=c.name }
+    else if(fm.data.category){ d.catKey='__new__'; d.catName=String(fm.data.category) }
+    else { d.catKey=''; d.catName='' }
+    if(tp.sub){ d.subName=tp.sub.name; d.subSel=tp.sub.name }
+    else {
+      var sn=fm.data.subcategory?String(fm.data.subcategory):'';
+      d.subName=sn; d.subSel=sn;
+      if(sn && c){
+        var found=false;
+        (c.subs||[]).forEach(function(s){ if(s.name===sn) found=true });
+        if(!found) d.subSel='__new__';
+      }
+    }
+    d.type=fm.data.type?String(fm.data.type):'';
+    d.tone=fm.data.tone?String(fm.data.tone):'';
+    d.tags=fm.data.tags?listToStr(fm.data.tags):'';
+    d.entities=fm.data.entities?listToStr(fm.data.entities):'';
+    d.summary=fm.data.summary?String(fm.data.summary):'';
+    d.quote=fm.data.quote?String(fm.data.quote):'';
+    d.extra=extraFM(fm.data);
+    d.body=String(fm.body||'').replace(/^\s+|\s+$/g,'');
+    d.srcFailed=false;
+    d.updatedAt=Date.now(); saveDrafts();
+    if(/^#\/write/.test(location.hash)) renderEditor();
+    edMsg('ok','原文已取回。改完点「保存修改」提交。');
+  }).catch(function(e){
+    if(e.status===401||e.status===403) edMsg('err','读不到原文：Token 无效或没权限（'+e.message+'）。先点「设置 Token」。');
+    else if(e.status===404) edMsg('err','仓库里找不到这个文件：'+d.srcPath);
+    else edMsg('err','取回原文失败：'+e.message+'。点「⟳ 取回原文」重试；取回来之前不能提交，免得把正文改丢。');
+  });
 }
 function copyMd(){
   var d=curDraft(); if(!d)return;
@@ -989,6 +1158,7 @@ function openSettings(){
    +'<h3>GitHub 设置</h3>'
    +'<div class="sub">发布要有一枚能写 <b>'+esc(REPO||'（未配置）')+'</b> 的 Token。推荐 Fine-grained token：Repository access 只勾这一个仓库，Permissions 里 <b>Contents</b> 选 <b>Read and write</b>。'
    +'Token 只存在你这台浏览器的本地存储里，除了 api.github.com 不会发给任何地方。</div>'
+   +'<div class="ed-hint" style="margin:0 0 13px;line-height:1.8">Token 有有效期（你在 GitHub 上设的那一星期）。<b>到期之后</b>「发布 / 保存修改」会返回 <b>401</b>：本地草稿一个字都不会丢，去 GitHub 重新生成一枚，回到这里覆盖保存就能继续用。浏览器读不到 Token 的具体到期日期（GitHub 没把这个信息开放给网页），所以这里没法显示哪天到期。</div>'
    +'<div class="ed-f"><label>Personal Access Token</label><input type="password" id="ghT" autocomplete="off" placeholder="github_pat_… 或 ghp_…" value="'+esc(ghToken())+'"></div>'
    +'<div class="ed-msg" id="ghMsg"></div>'
    +'<div class="ed-foot" style="border:0;padding:0;margin:0">'
@@ -1014,6 +1184,7 @@ function openSettings(){
     fetch('https://api.github.com/repos/'+REPO,{headers:{'Authorization':'Bearer '+tok,'Accept':'application/vnd.github+json'}})
       .then(function(r){ return r.json().then(function(j){ return {ok:r.ok,status:r.status,j:j} }) })
       .then(function(x){
+        if(x.status===401){ ghMsg('err','这枚 Token 无效或已过期（401 Bad credentials）。请重新生成一枚再填进来。'); return }
         if(!x.ok){ ghMsg('err','连不上：'+((x.j&&x.j.message)||('HTTP '+x.status))); return }
         var push=x.j.permissions && x.j.permissions.push;
         if(push) ghMsg('ok','连接正常，对 '+x.j.full_name+' 有写权限，可以发布。');
@@ -1110,6 +1281,18 @@ function parseFM(txt){
   });
   return {data:data, body:txt.slice(m[0].length)};
 }
+var KNOWN_FM=['title','category','subcategory','type','tone','tags','summary','quote','entities'];
+function extraFM(data){
+  var out=[];
+  Object.keys(data||{}).forEach(function(k){
+    if(KNOWN_FM.indexOf(k)>=0) return;
+    var v=data[k];
+    if(v==null||v==='') return;
+    if(Array.isArray(v)){ if(v.length) out.push([k,v]) }
+    else out.push([k,String(v)]);
+  });
+  return out;
+}
 function importFiles(files){
   var arr=[]; for(var i=0;i<files.length;i++) arr.push(files[i]);
   if(!arr.length) return;
@@ -1125,7 +1308,7 @@ function importFiles(files){
         var cat=null;
         if(fm.data.category){
           var raw=String(fm.data.category);
-          cat=catByName(raw);
+          cat=catByAnyName(raw);
           if(cat){ d.catKey=cat.key; d.catName=cat.name }
           else { d.catKey='__new__'; d.catName=raw }
         }
@@ -1159,7 +1342,7 @@ $('#btnWrite').onclick=function(){
 $('#edFiles').addEventListener('change',function(){ importFiles(this.files); this.value='' });
 window.addEventListener('beforeunload',function(){ if(saveTimer){ clearTimeout(saveTimer); saveDrafts() } });
 
-buildTree(); route();
+initSide(); buildTree(); route();
 </script>
 </body>
 </html>
