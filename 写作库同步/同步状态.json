@@ -3,7 +3,7 @@
   "appVersion": "6.4.2",
   "kind": "head",
   "version": 1,
-  "generatedAt": "2026-10-30T17:49:36.662Z",
+  "generatedAt": "2026-10-30T18:17:39.030Z",
   "device": "手机网页-p9c9",
   "repo": "huangpingsheng/writing-library",
   "branch": "main",
@@ -19,10 +19,10 @@
     },
     "drafts": {
       "file": "草稿.json",
-      "sha": "0488c04bddb93661ab3fd2a5546c8e01279b12b0",
-      "hash": "de10a3dabd92b08f-191",
-      "bytes": 491,
-      "count": 1
+      "sha": "abe1ffa28f4f0596717d66b693408228c719a38d",
+      "hash": "741638a5d72c77b8-2",
+      "bytes": 207,
+      "count": 0
     },
     "revisions": {
       "file": "修订.json",
@@ -33,9 +33,9 @@
     },
     "workspace": {
       "file": "工程.json",
-      "sha": "db5867ed63bc48bcc768a5e519eaf6c6980a642a",
-      "hash": "a51eacea428816aa-313933",
-      "bytes": 697983,
+      "sha": "70f66e772852e237c4df264c2a953da205e03531",
+      "hash": "82060df1a8c95812-314106",
+      "bytes": 698358,
       "count": 9
     },
     "meta": {

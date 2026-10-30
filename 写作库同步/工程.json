@@ -2,9 +2,9 @@
   "app": "写作库",
   "appVersion": "6.4.2",
   "kind": "workspace",
-  "hash": "a51eacea428816aa-313933",
+  "hash": "82060df1a8c95812-314106",
   "count": 9,
-  "generatedAt": "2026-10-30T17:48:19.772Z",
+  "generatedAt": "2026-10-30T18:17:35.808Z",
   "device": "手机网页-p9c9",
   "data": {
     "projects": [
@@ -22772,7 +22772,7 @@
         "panels": [
           "nd-ZL-0040"
         ],
-        "view": "outline",
+        "view": "editor",
         "libKey": "type:资料",
         "libKind": "archive",
         "libType": "资料",
@@ -25902,7 +25902,7 @@
         "name": "雾港来信",
         "desc": "未分卷 · 第一卷",
         "createdAt": 1793204072832,
-        "updatedAt": 1793204072847,
+        "updatedAt": 1793383215818,
         "nodes": [
           {
             "id": "nv-s-s6ff380",
@@ -25929,6 +25929,19 @@
             "order": 1,
             "x": 80,
             "y": 80
+          },
+          {
+            "id": "n_mvva29iu_105mf9",
+            "type": "ch",
+            "title": "第一章",
+            "body": "",
+            "parents": [],
+            "color": "#4E8F7C",
+            "line": "main",
+            "time": "",
+            "order": 1793383215798,
+            "x": 420,
+            "y": 120
           }
         ],
         "chars": [],
@@ -25939,8 +25952,10 @@
           "daily": 1500
         },
         "daily": {},
-        "panels": [],
-        "view": "outline",
+        "panels": [
+          "n_mvva29iu_105mf9"
+        ],
+        "view": "editor",
         "libKey": "novel:c67e512",
         "libKind": "novel",
         "libType": "小说",
