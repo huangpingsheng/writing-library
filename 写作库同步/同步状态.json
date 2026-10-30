@@ -1,0 +1,49 @@
+{
+  "app": "写作库",
+  "appVersion": "6.4.0-p2",
+  "kind": "head",
+  "version": 1,
+  "generatedAt": "2026-10-30T14:55:13.532Z",
+  "device": "电脑网页-dya7",
+  "repo": "huangpingsheng/writing-library",
+  "branch": "main",
+  "dir": "写作库同步",
+  "note": "只同步相对初始文库的改动；不含种子全文，也不含 Token。",
+  "domains": {
+    "articles": {
+      "file": "文章改动.json",
+      "sha": "6505fd8d2c0ac84264938882ea77162396ef9370",
+      "hash": "5465b825baa9e378-2",
+      "bytes": 212,
+      "count": 0
+    },
+    "drafts": {
+      "file": "草稿.json",
+      "sha": "ad701ea74d763ec60cdadadfaca20f715bf32ec4",
+      "hash": "741638a5d72c77b8-2",
+      "bytes": 210,
+      "count": 0
+    },
+    "revisions": {
+      "file": "修订.json",
+      "sha": "888d62d238c2c2a5a407489129b8b79e370a9dfb",
+      "hash": "5465b825baa9e378-2",
+      "bytes": 213,
+      "count": 0
+    },
+    "workspace": {
+      "file": "工程.json",
+      "sha": "46d5ded534f4e4e8a7421ba1d59288deeba8ba0f",
+      "hash": "ca7cfa2149a5a163-294532",
+      "bytes": 659466,
+      "count": 9
+    },
+    "meta": {
+      "file": "数据库开关.json",
+      "sha": "49d0665140c5d535eb6bebd0e905a624cd052373",
+      "hash": "e6d071e8ca426331-14",
+      "bytes": 230,
+      "count": 0
+    }
+  }
+}
