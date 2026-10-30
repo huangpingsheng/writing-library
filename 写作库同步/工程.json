@@ -2,10 +2,10 @@
   "app": "写作库",
   "appVersion": "6.4.0-p2",
   "kind": "workspace",
-  "hash": "ca7cfa2149a5a163-294532",
+  "hash": "25f6e114facece4e-294572",
   "count": 9,
-  "generatedAt": "2026-10-30T14:55:09.501Z",
-  "device": "电脑网页-dya7",
+  "generatedAt": "2026-10-30T16:05:23.383Z",
+  "device": "电脑网页-cy2s",
   "data": {
     "projects": [
       {
@@ -42,7 +42,7 @@
             "time": "",
             "order": 1,
             "x": 80,
-            "y": 513
+            "y": 80
           },
           {
             "id": "nv-s-s1a2ed3",
@@ -56,8 +56,8 @@
             "line": "main",
             "time": "",
             "order": 2,
-            "x": 400,
-            "y": 513
+            "x": 380,
+            "y": 80
           }
         ],
         "chars": [],
@@ -81,7 +81,11 @@
         "libLayout": 2,
         "outline": {
           "wires": "selected",
-          "pins": []
+          "pins": [
+            "nv-c-ccfd948",
+            "nd-BS-0001",
+            "nv-s-s1a2ed3"
+          ]
         }
       },
       {
