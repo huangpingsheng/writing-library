@@ -1,10 +1,10 @@
 {
   "app": "写作库",
-  "appVersion": "6.4.2",
+  "appVersion": "6.4.4.1",
   "kind": "head",
   "version": 1,
-  "generatedAt": "2026-10-30T18:17:39.030Z",
-  "device": "手机网页-p9c9",
+  "generatedAt": "2026-11-14T12:24:44.875Z",
+  "device": "手机网页-91b2",
   "repo": "huangpingsheng/writing-library",
   "branch": "main",
   "dir": "写作库同步",
@@ -12,37 +12,37 @@
   "domains": {
     "articles": {
       "file": "文章改动.json",
-      "sha": "ccf48816b5bf659ab7e40513e2e07a2716a612db",
-      "hash": "5465b825baa9e378-2",
-      "bytes": 209,
-      "count": 0
+      "sha": "935b156944a8af8667c58d267e755e311516ac34",
+      "hash": "fa07cb6039ed2a22-3657",
+      "bytes": 9987,
+      "count": 2
     },
     "drafts": {
       "file": "草稿.json",
-      "sha": "abe1ffa28f4f0596717d66b693408228c719a38d",
-      "hash": "741638a5d72c77b8-2",
-      "bytes": 207,
-      "count": 0
+      "sha": "84ed20ee6cd44de4fd6374c8096dfbc44c23b77e",
+      "hash": "64d60c0dff815ebe-2855",
+      "bytes": 7860,
+      "count": 2
     },
     "revisions": {
       "file": "修订.json",
-      "sha": "0828b63f454d36b8a62f31c2ca82576e1a0323ed",
-      "hash": "5465b825baa9e378-2",
-      "bytes": 210,
-      "count": 0
+      "sha": "34406db58a907399d14074a3c24930b070cd807b",
+      "hash": "ec8438243ead74b6-2993",
+      "bytes": 8456,
+      "count": 2
     },
     "workspace": {
       "file": "工程.json",
-      "sha": "70f66e772852e237c4df264c2a953da205e03531",
-      "hash": "82060df1a8c95812-314106",
-      "bytes": 698358,
-      "count": 9
+      "sha": "1be77e0e8ce002cf37542f9565d97f2ce1371b8a",
+      "hash": "ffa4ebb601aca1bb-291574",
+      "bytes": 653424,
+      "count": 6
     },
     "meta": {
       "file": "数据库开关.json",
-      "sha": "6f81ff869f9616399f85090c49a3d74dbe7e0386",
+      "sha": "b76f9460aa7934a97ab8149f6e8ea3027486f104",
       "hash": "e6d071e8ca426331-14",
-      "bytes": 227,
+      "bytes": 229,
       "count": 0
     }
   }
